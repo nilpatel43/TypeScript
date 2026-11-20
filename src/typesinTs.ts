@@ -1,3 +1,4 @@
+
 //  Type Inference
 
 let drink = "water";
