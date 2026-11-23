@@ -1,5 +1,6 @@
+// Type Narrowing
 
-//  Type Narrowing
+// इसमें Condition के आधार पर Type को छोटा किया जाता है।
 
 function getChai(kind: string | number) {
   if (typeof kind === "string") {
@@ -27,7 +28,9 @@ function orderChai(size: "small" | "medium" | "large" | number) {
 }
 
 
-//  Type Guards
+// Type Guards
+
+// इससे पता चलता है कि Variable किस Class का Object है।
 
 class KulhadChai {
   serve() {
@@ -48,13 +51,16 @@ function serve(chai: KulhadChai | CuttingChai) {
 }
 
 
-//  Custom Type
+// Custom Type
+
+// इसमें हम अपना खुद का Type बनाते हैं।
 
 type ChaiOrder = {
     type: string
     sugar: number
 }
 
+// यहाँ Check किया जाता है कि Object ChaiOrder Type का है या नहीं।
 function isChaiOrder(obj: any): obj is ChaiOrder {
     return(
         typeof obj === "object" &&
@@ -72,13 +78,14 @@ function serveOrder(item: ChaiOrder | string) {
 }
 
 
-
+// अलग-अलग Chai के लिए Type बनाए गए हैं।
 type MasalaChai = {type: "masala", spicelevel: number}
 type GaramChai = {type: "ginger", amount: number}
 type ElaichiChai = {type: "elaichi", aroma: number}
 
 type Chai = MasalaChai | GaramChai | ElaichiChai
 
+// यहाँ Switch की मदद से Chai का Type Check होता है।
 function MakeChai(order: Chai) {
     switch(order.type) {
         case "masala":
@@ -94,6 +101,7 @@ function MakeChai(order: Chai) {
 }
 
 
+// यहाँ Property की मदद से Type Check किया जाता है।
 function brew(order: MasalaChai | GaramChai) {
     if ("spicelevel" in order) {
         //
@@ -101,7 +109,9 @@ function brew(order: MasalaChai | GaramChai) {
 }
 
 
-//  Type Unknown example
+// Type Unknown example
+
+// Unknown Type में Value का उपयोग करने से पहले उसका Type Check करना पड़ता है।
 
 // function isStringArray(arr: unknown): arr is string[] {
 
